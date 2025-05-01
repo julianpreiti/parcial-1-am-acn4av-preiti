@@ -38,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
+        android:importantForAccessibility="no"
         android:src="@drawable/round_add_24"
         app:layout_anchor="@id/bottomAppBar"
         app:maxImageSize="40dp"
