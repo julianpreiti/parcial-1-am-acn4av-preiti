@@ -41,11 +41,11 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/nav_background"
         android:importantForAccessibility="no"
         android:src="@drawable/round_add_24"
         app:layout_anchor="@id/bottomAppBar"
         app:maxImageSize="40dp"
+        app:backgroundTint="@color/white"
         app:tint ="@color/main"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
