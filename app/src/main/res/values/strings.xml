@@ -8,4 +8,8 @@
     <string name="correo_electronico">Correo electrónico</string>
     <string name="crea_tu_cuenta">Crea tu cuenta</string>
     <string name="registrame">Registrame</string>
+    <string name="repetir_contrasena">Repetir contraseña</string>
+    <string name="ya_tienes_cuenta">Ya tienes cuenta? Inicia sesión</string>
+    <string name="registrarme_ahora">Registrarme ahora</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>
