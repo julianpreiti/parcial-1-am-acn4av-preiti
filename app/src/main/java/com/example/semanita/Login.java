@@ -60,8 +60,6 @@ public class Login extends AppCompatActivity {
         textView = findViewById(R.id.registerNow);
 
         textView.setOnClickListener(new View.OnClickListener() {
-            ;
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Register.class);

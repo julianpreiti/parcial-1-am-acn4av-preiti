@@ -7,8 +7,10 @@
     tools:context=".AccountFragment">
 
     <LinearLayout
+        android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+        android:gravity="center">
 
 
     <TextView
@@ -17,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="Cuenta"
         android:textColor="@color/black"
-        android:textSize="30sp" />
+        android:textSize="18sp" />
 
 
     <Button
@@ -27,7 +29,7 @@
         android:text="@string/cerrar_sesion"
         android:backgroundTint="@color/main"
         android:textColor="@android:color/white"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="120dp"/>
 
     </LinearLayout>
 

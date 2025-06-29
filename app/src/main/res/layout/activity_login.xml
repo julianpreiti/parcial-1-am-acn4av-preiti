@@ -8,34 +8,42 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".Login"
-    android:padding="16dp">
+    android:layout_margin="28dp">
 
     <TextView
         android:text="@string/ingresa_a_tu_cuenta"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:gravity="center"
+        android:layout_marginTop="184dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"/>
     
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="none" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:hint="@string/correo_electronico"
+            android:textColor="@color/text_inactive"
+            android:background="@drawable/edittext_underline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="none" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
+            android:textColor="@color/text_inactive"
+            android:background="@drawable/edittext_underline"
             android:hint="@string/contrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -45,23 +53,35 @@
         android:id="@+id/progressBar"
         android:visibility="gone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_underline"/>
 
     <Button
         android:id="@+id/login_button"
+        android:layout_marginTop="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/main"
         android:text="@string/iniciar_sesion" />
 
     <TextView
         android:textStyle="bold"
         android:textSize="14sp"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:id="@+id/registerNow"
         android:text="@string/registrarme_ahora"
+        android:textColor="@color/cat_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/semanita"
+        android:textColor="@color/main"
+        android:textSize="42sp"
+        android:gravity="center"
+        android:layout_marginTop="148dp"
+        android:fontFamily="@font/teko_medium" />
 </LinearLayout>
