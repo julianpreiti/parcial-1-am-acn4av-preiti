@@ -46,7 +46,8 @@
             android:background="@drawable/edittext_underline"
             android:hint="@string/contrasena"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,7 +61,8 @@
             android:background="@drawable/edittext_underline"
             android:hint="@string/repetir_contrasena"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
