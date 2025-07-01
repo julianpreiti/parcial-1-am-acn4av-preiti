@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:paddingBottom="116dp"
+        android:paddingBottom="126dp"
         android:clipToPadding="false">
 
         <LinearLayout
@@ -185,7 +185,7 @@
             <LinearLayout
                 android:id="@+id/calendar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:background="@color/white" />
 

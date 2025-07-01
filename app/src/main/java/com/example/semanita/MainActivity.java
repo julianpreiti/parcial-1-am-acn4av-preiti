@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
         replaceFragment(new HomeFragment());
         binding.bottomNavigationView.setBackground(null);
-
+        binding.fab.setOnClickListener(v -> {
+            new AddTaskDialogFragment().show(getSupportFragmentManager(), "AddTaskDialog");
+        });
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             int itemId = item.getItemId();

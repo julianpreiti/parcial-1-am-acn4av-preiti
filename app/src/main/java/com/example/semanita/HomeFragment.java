@@ -1,6 +1,4 @@
 package com.example.semanita;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
-    private int selectedIndex = 3; // Hoy es el dia 3
+    private int selectedIndex = 3;
     private View lastSelectedView = null;
 
     @Override
@@ -31,7 +29,6 @@ public class HomeFragment extends Fragment {
 
         String[] dayLetters = {"D", "L", "M", "M", "J", "V", "S"};
         SimpleDateFormat dayNumberFormat = new SimpleDateFormat("dd", Locale.getDefault());
-        SimpleDateFormat dayNameFormat = new SimpleDateFormat("EEEE", new Locale("es"));
 
         for (int i = 0; i < 11; i++) {
             View dayView = inflater.inflate(R.layout.item_day, daysContainer, false);
@@ -112,7 +109,6 @@ public class HomeFragment extends Fragment {
         int diffDays = (int) (diffMillis / (24 * 60 * 60 * 1000));
 
         if (diffDays == 0) {
-            // si es hoy mostramos la hora actual
             SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
             dayHour.setText(hourFormat.format(Calendar.getInstance().getTime()));
         } else if (diffDays == -1) {
