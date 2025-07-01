@@ -1,5 +1,6 @@
 package com.example.semanita;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
+
 public class HomeFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private TaskAdapter adapter;
+    private List<Task> taskList = new ArrayList<>();
+    private List<String> dayKeys = new ArrayList<>();
+    private String selectedDayKey;
     private int selectedIndex = 3;
     private View lastSelectedView = null;
 
@@ -22,6 +38,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         LinearLayout daysContainer = view.findViewById(R.id.days_container);
+        SimpleDateFormat keyFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
         // Creamos los dias 3 antes, hoy y 7 despues
         Calendar calendar = Calendar.getInstance();
@@ -39,7 +56,12 @@ public class HomeFragment extends Fragment {
             letter.setText(dayLetters[weekDay]);
             number.setText(dayNumberFormat.format(calendar.getTime()));
 
-            // Cual seleccionó el usuario
+            String dayKey = keyFormat.format(calendar.getTime());
+            dayKeys.add(dayKey);
+            if (i == selectedIndex) {
+                selectedDayKey = dayKey;
+            }
+
             if (i == selectedIndex) {
                 dayView.setBackgroundResource(R.drawable.button_rounded);
                 lastSelectedView = dayView;
@@ -52,7 +74,6 @@ public class HomeFragment extends Fragment {
                 number.setTextColor(ContextCompat.getColor(requireContext(), R.color.black));
             }
 
-            // Listener para seleccionar el día
             final int index = i;
             final Calendar selectedDate = (Calendar) calendar.clone();
             dayView.setOnClickListener(v -> {
@@ -68,16 +89,54 @@ public class HomeFragment extends Fragment {
                 number.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
                 lastSelectedView = v;
                 selectedIndex = index;
+                selectedDayKey = dayKeys.get(index);
                 updateHeader(view, selectedDate);
+                loadTasks();
             });
 
             daysContainer.addView(dayView);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
 
-        // aca desp ponemos la logica del resto
+        recyclerView = view.findViewById(R.id.recycler_view_tasks);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new TaskAdapter(taskList, this::loadTasks);
+        recyclerView.setAdapter(adapter);
+
+        loadTasks();
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        getParentFragmentManager().setFragmentResultListener("task_added", this, (key, bundle) -> {
+            loadTasks();
+        });
+    }
+
+    public void loadTasks() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseFirestore.getInstance()
+                .collection("users")
+                .document(uid)
+                .collection("tasks")
+                .whereEqualTo("day", selectedDayKey)
+                .whereEqualTo("completed", false)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    taskList.clear();
+                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                        Task task = doc.toObject(Task.class);
+                        task.id = doc.getId();
+                        taskList.add(task);
+                    }
+                    adapter.notifyDataSetChanged();
+                    TextView selectedDay = getView().findViewById(R.id.selectedDay);
+                    selectedDay.setText("Tareas: " + taskList.size());
+                });
     }
 
     private void updateHeader(View view, Calendar date) {

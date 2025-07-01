@@ -6,8 +6,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.semanita.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,8 +23,17 @@ public class MainActivity extends AppCompatActivity {
 
         replaceFragment(new HomeFragment());
         binding.bottomNavigationView.setBackground(null);
+        // Acá hacemos el evento del fab pero antes verificamos que esté logueado el usuario.
         binding.fab.setOnClickListener(v -> {
-            new AddTaskDialogFragment().show(getSupportFragmentManager(), "AddTaskDialog");
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                Fragment current = getSupportFragmentManager().findFragmentById(R.id.frame_layout);
+                if (current instanceof HomeFragment) {
+                    AddTaskDialogFragment dialog = new AddTaskDialogFragment(((HomeFragment) current)::loadTasks);
+                    dialog.show(getSupportFragmentManager(), "AddTaskDialog");
+                }
+            } else {
+                Toast.makeText(this, "Tenes que iniciar sesión para agregar tareas", Toast.LENGTH_SHORT).show();
+            }
         });
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 

@@ -182,12 +182,13 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:id="@+id/calendar_layout"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_tasks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@color/white" />
+                android:paddingTop="16dp"
+                android:clipToPadding="false"
+                android:background="@color/white"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
