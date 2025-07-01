@@ -1,6 +1,5 @@
 package com.example.semanita;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void loadTasks() {
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         FirebaseFirestore.getInstance()
                 .collection("users")
                 .document(uid)
@@ -130,11 +130,13 @@ public class HomeFragment extends Fragment {
                     taskList.clear();
                     for (DocumentSnapshot doc : queryDocumentSnapshots) {
                         Task task = doc.toObject(Task.class);
-                        task.id = doc.getId();
-                        taskList.add(task);
+                        if (task != null) {
+                            task.id = doc.getId();
+                            taskList.add(task);
+                        }
                     }
                     adapter.notifyDataSetChanged();
-                    TextView selectedDay = getView().findViewById(R.id.selectedDay);
+                    TextView selectedDay = requireView().findViewById(R.id.selectedDay);
                     selectedDay.setText("Tareas: " + taskList.size());
                 });
     }

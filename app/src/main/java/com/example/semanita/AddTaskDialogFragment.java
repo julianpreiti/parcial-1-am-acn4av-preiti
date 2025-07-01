@@ -35,7 +35,7 @@ public class AddTaskDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_add_task_dialog, null);
+        View view = getLayoutInflater().inflate(R.layout.fragment_add_task_dialog, null);
 
         Spinner spinnerDay = view.findViewById(R.id.spinner_day);
         EditText editTitle = view.findViewById(R.id.edit_title);

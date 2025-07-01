@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="07"
+                    android:text="@string/_00"
                     android:textColor="@color/black"
                     android:textSize="32sp"
                     android:textStyle="bold"
@@ -62,7 +62,7 @@
                         android:id="@+id/dayName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dia"
+                        android:text="@string/dia"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -72,7 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="00:00"
+                        android:text="@string/_00_00"
                         android:textColor="@color/cat_home"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -84,7 +84,7 @@
                     android:background="@drawable/alter_button_rounded"
                     android:paddingHorizontal="24dp"
                     android:paddingVertical="6dp"
-                    android:text="Tareas"
+                    android:text="@string/tareas"
                     android:textColor="@color/alter"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -145,7 +145,7 @@
                         android:id="@+id/home_hour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tiempo"
+                        android:text="@string/tiempo"
                         android:textColor="@color/inactive"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="18dp"
-                        android:text="Tareas"
+                        android:text="@string/tareas"
                         android:textColor="@color/inactive"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/home_hour"
@@ -164,6 +164,7 @@
 
                     <ImageButton
                         android:id="@+id/button_filter"
+                        android:contentDescription="@string/boton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
